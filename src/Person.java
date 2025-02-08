@@ -1,4 +1,4 @@
-public record Person(String name, int age) {
+public record Person(String name, int age) implements Comparable<Person> {
     public Person {
         if (age < 0) {
             throw new IllegalArgumentException("Age cannot be negative");
@@ -15,14 +15,18 @@ public record Person(String name, int age) {
         Person person4 = new Person("David", 35);
         Person person5 = new Person("Eve", 20);
 
-        Person[] persons = {person, person2, person3, person4, person5};
-        return persons;
+        return new Person[] {person, person2, person3, person4, person5};
     }
 
     public static void printPersons(Person[] persons) {
         for (Person p : persons) {
             System.out.println(p);
         }
+    }
+
+    @Override
+    public int compareTo(Person other) {
+        return Integer.compare(this.age, other.age);
     }
 
 }

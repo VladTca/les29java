@@ -2,31 +2,29 @@ public class Main {
     public static void main(String[] args) {
 
         Person[] persons = Person.getPersons();
-        bubblePersons(persons);
+        bubble(persons);
         Person.printPersons(persons);
+        System.out.println();
+        Human[] humans = Human.getHumans();
+        bubble(humans);
+        Human.printHumans(humans);
 
     }
 
-    private static void bubblePersons(Person[] persons) {
-        for (int i = 0; i < persons.length; i++) {
-            for (int j = 1; j < persons.length - i; j++) {
-                if (comparePersonByAge(persons[j], persons[j - 1]) < 0) {
-                    swap(persons, j, j - 1);
+    private static <T extends Comparable<T>> void bubble(T[] people) {
+        for (int i = 0; i < people.length-1; i++) {
+            for (int j = 1; j < people.length - i; j++) {
+                if (people[j].compareTo(people[j - 1]) < 0) {
+                    swap(people, j, j - 1);
                 }
-
             }
-
         }
     }
 
-    public static int comparePersonByAge(Person p1, Person p2) {
-        return p1.age() - p2.age();
-    }
-
-    public static void swap(Person[] arr, int x, int y) {
-        Person temp = arr[x];
-        arr[x] = arr[y];
-        arr[y] = temp;
+    private static <T> void swap(T[] array, int i, int j) {
+        T temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 
 }
