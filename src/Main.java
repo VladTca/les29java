@@ -1,3 +1,5 @@
+import java.nio.file.Path;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -8,7 +10,13 @@ public class Main {
         Human[] humans = Human.getHumans();
         bubble(humans);
         Human.printHumans(humans);
-
+        System.out.println();
+        Path path = Path.of("src/people.txt");
+        Path newPath = Path.of("src/peopleSort.txt");
+        Human[] humansFromFile = Human.readHumansFromFile(path);
+        bubble(humansFromFile);
+        Human.printHumans(humansFromFile);
+        Human.writeHumansToFile(newPath, humansFromFile);
     }
 
     private static <T extends Comparable<T>> void bubble(T[] people) {

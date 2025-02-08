@@ -1,0 +1,10 @@
+Alice, 30
+Bob, 25
+Charlie, 40
+David, 35
+Eve, 20
+Frank, 32
+Grace, 28
+Hank, 50
+Ivy, 22
+Jack, 45

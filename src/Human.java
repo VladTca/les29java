@@ -1,3 +1,9 @@
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+
 public class Human implements Comparable<Human> {
     private final String name;
     private final int age;
@@ -47,6 +53,32 @@ public class Human implements Comparable<Human> {
                 new Human("Eve", 20)
         };
 
+    }
+
+
+    public static Human[] readHumansFromFile(Path path) {
+        try {
+            List<String> lines = Files.readAllLines(path);
+            Human[] humans = new Human[lines.size()];
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).split(" ");
+                humans[i] = new Human(parts[0], Integer.parseInt(parts[1]));
+            }
+            return humans;
+        } catch (IOException e) {
+            throw new RuntimeException("Ошибка при чтении файла", e);
+        }
+    }
+
+    public static void writeHumansToFile(Path path, Human[] humans) {
+        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+            for (Human h : humans) {
+                writer.write(h.name + " " + h.age);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Ошибка при записи файла", e);
+        }
     }
 
     public static void printHumans(Human[] humans) {

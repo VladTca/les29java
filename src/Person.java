@@ -18,6 +18,7 @@ public record Person(String name, int age) implements Comparable<Person> {
         return new Person[]{person, person2, person3, person4, person5};
     }
 
+
     public static void printPersons(Person[] persons) {
         for (Person p : persons) {
             System.out.println(p);
