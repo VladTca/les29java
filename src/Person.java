@@ -15,7 +15,7 @@ public record Person(String name, int age) implements Comparable<Person> {
         Person person4 = new Person("David", 35);
         Person person5 = new Person("Eve", 20);
 
-        return new Person[] {person, person2, person3, person4, person5};
+        return new Person[]{person, person2, person3, person4, person5};
     }
 
     public static void printPersons(Person[] persons) {
@@ -28,5 +28,4 @@ public record Person(String name, int age) implements Comparable<Person> {
     public int compareTo(Person other) {
         return Integer.compare(this.age, other.age);
     }
-
 }
